@@ -12,7 +12,7 @@ public class EnterActivity extends Activity {
     @Override protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        intConfigure(PICTURE_MODE, "dd.png");
+        intConfigure(PICTURE_MODE, "timg.jpg");
         mView = new PlayerView(getApplication());
         setContentView(mView);
 

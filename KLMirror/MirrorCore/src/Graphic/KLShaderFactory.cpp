@@ -17,7 +17,7 @@ std::shared_ptr<KLShader> KLShaderFactory::GetCoreShader(KLE_SHADER_TYPE type)
             {KLE_SHADER_MEDIAN_FILTER, "shaders/filter_median.glsl"},
             {KLE_SHADER_LUT_FILTER, "shaders/filter_color_map.glsl"},
             {KLE_SHADER_GUASS1D_FILTER, "shaders/filter_guass1d.glsl"},
-            {KLE_SHADER_USM_FILTER, "shaders/filter_usm.glsl"},
+            {KLE_SHADER_BLUR_FILTER, "shaders/filter_blur.glsl"},
             {KLE_SHADER_4K_LUM_FILTER, "shaders/filter_4k_lum.glsl"},
             {KLE_SHADER_4K_LIGHTEST_FILTER, "shaders/filter_4k_lighest.glsl"},
             {KLE_SHADER_4K_GRADIENT_FILTER, "shaders/filter_4k_gradient.glsl"},

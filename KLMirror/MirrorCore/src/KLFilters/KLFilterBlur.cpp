@@ -1,8 +1,8 @@
-#include "../../include/KLFilters/KLFilterUSM.h"
+#include "../../include/KLFilters/KLFilterBlur.h"
 #include "../../include/KLShaderFactory.h"
 #include "../../include/GLUtil.h"
 
-KLFilterUSM::KLFilterUSM()
+KLFilterBlur::KLFilterBlur()
 {
     _texHalf = nullptr;
     _depth = 0;
@@ -10,12 +10,12 @@ KLFilterUSM::KLFilterUSM()
     _vbo = 0;
 }
 
-KLFilterUSM::~KLFilterUSM()
+KLFilterBlur::~KLFilterBlur()
 {
 
 }
 
-void KLFilterUSM::Init(int w, int h)
+void KLFilterBlur::Init(int w, int h)
 {
     _texHalf = new KLTexture(w, h, KLE_TEX_RGBA);
 
@@ -26,7 +26,7 @@ void KLFilterUSM::Init(int w, int h)
     GLUtil::CreatePanelVBO(_vbo);
 }
 
-void KLFilterUSM::GenerateGuassianHoriz(KLTexture *srcTex)
+void KLFilterBlur::GenerateGuassianHoriz(KLTexture *srcTex)
 {
     int srcWidth = srcTex->w();
     int srcHeight = srcTex->h();
@@ -70,7 +70,7 @@ void KLFilterUSM::GenerateGuassianHoriz(KLTexture *srcTex)
     glBindFramebuffer(GL_FRAMEBUFFER, pre_fbo);
 }
 
-void KLFilterUSM::GuassianUSM(KLTexture * srcTex, KLTexture *blurTex)
+void KLFilterBlur::GuassianUSM(KLTexture * srcTex, KLTexture *blurTex)
 {
     GLuint blurID = blurTex->getTexID();
     GLuint srcID = srcTex->getTexID();
@@ -82,7 +82,7 @@ void KLFilterUSM::GuassianUSM(KLTexture * srcTex, KLTexture *blurTex)
     glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D, blurID);
 
-    auto shader = KLShaderFactory::GetCoreShader(KLE_SHADER_USM_FILTER);
+    auto shader = KLShaderFactory::GetCoreShader(KLE_SHADER_BLUR_FILTER);
     GLuint prog = shader->program();
     glUseProgram(prog);
     glUniform1i(glGetUniformLocation(prog, "u_texSRC"), 0);
@@ -112,7 +112,7 @@ void KLFilterUSM::GuassianUSM(KLTexture * srcTex, KLTexture *blurTex)
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
-void KLFilterUSM::Process(KLTexture *srcTex)
+void KLFilterBlur::Process(KLTexture *srcTex)
 {
     int srcWidth = srcTex->w();
     int srcHeight = srcTex->h();

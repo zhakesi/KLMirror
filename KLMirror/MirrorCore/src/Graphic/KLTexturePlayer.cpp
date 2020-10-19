@@ -5,7 +5,7 @@
 #include "../../include/AndroidLog.h"
 #include "../../include/KLFilters/KLFilterNULL.h"
 #include "../../include/KLFilters/KLColorMapFilter.h"
-#include "../../include/KLFilters/KLFilterUSM.h"
+#include "../../include/KLFilters/KLFilterBlur.h"
 #include "../../include/KLFilters/KLFilter4K.h"
 
 int KLTexturePlayer::_w = 0;
@@ -45,7 +45,7 @@ void KLTexturePlayer::renderTexture()
 
     KLTexturePlayer::updateSplit();
     if (_use_filter) {
-        static KLFilter4K *filter = new KLFilter4K;
+        static KLFilterBlur *filter = new KLFilterBlur;
         auto srcTex = KLMedia::GetResultTexture();
         filter->Process(srcTex);
     } else {

@@ -27,6 +27,5 @@ void main()
     blur = blur + texture(u_texHoriz, v_uv - offset1).rgb * weight[1];
     blur = blur + texture(u_texHoriz, v_uv + offset2).rgb * weight[2];
     blur = blur + texture(u_texHoriz, v_uv - offset2).rgb * weight[2];
-    vec3 color = (src - 0.6 *blur) / 0.4;
-    fragColor = vec4(color, 1.0);
+    fragColor = vec4(blur.rgb, 1.0);
 }

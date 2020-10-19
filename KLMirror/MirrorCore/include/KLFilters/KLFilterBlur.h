@@ -3,10 +3,10 @@
 #include "../KL3D.h"
 #include "../KLTexture.h"
 
-class KLFilterUSM {
+class KLFilterBlur {
 public:
-    KLFilterUSM();
-    ~KLFilterUSM();
+    KLFilterBlur();
+    ~KLFilterBlur();
     void Process(KLTexture *srcTex);
 
 private:

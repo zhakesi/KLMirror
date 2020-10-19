@@ -16,10 +16,10 @@ public class ControlView {
     private CheckBox _filterBox;
     @SuppressLint("ResourceType")
     public void InitCompents(Context ctx) {
-        _pauseBox = new CheckBox(ctx);
-        _pauseBox.setChecked(false);
         _pauseBox.setButtonDrawable(R.drawable.play_status);
         //_pauseBox.setButtonDrawable(Color.TRANSPARENT);
+        _pauseBox = new CheckBox(ctx);
+        _pauseBox.setChecked(false);
         /// _pauseBox.setBackground
         _pauseBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         {
@@ -35,7 +35,7 @@ public class ControlView {
         });
 
         _filterBox = new CheckBox(ctx);
-        _filterBox.setText("Anime4K");
+        _filterBox.setText("blur");
         _filterBox.setChecked(false);
         _filterBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         {
