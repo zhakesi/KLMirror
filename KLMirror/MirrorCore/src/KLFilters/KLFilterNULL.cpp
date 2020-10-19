@@ -27,8 +27,8 @@ void KLFilterNULL::Process(GLuint srcTex)
         Init(w, h);
         KLLOG_I("Init Null filter size:%d %d", _fb_dat._w, _fb_dat._h);
     }
-    glBindFramebuffer(GL_FRAMEBUFFER, _fb_dat._fboID);
-    glViewport(0, 0, _fb_dat._w, _fb_dat._h);
+//    glBindFramebuffer(GL_FRAMEBUFFER, _fb_dat._fboID);
+//    glViewport(0, 0, _fb_dat._w, _fb_dat._h);
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, srcTex);
@@ -57,17 +57,17 @@ void KLFilterNULL::Process(GLuint srcTex)
 
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
-    glBindFramebuffer(GL_READ_FRAMEBUFFER, _fb_dat._fboID);
-    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
-
-    float split = KLTexturePlayer::SplitLine();
-    //int start = split * _fb_dat._w +2;
-    int start = 0;
-
-    glBlitFramebuffer(start, 0, _fb_dat._w, _fb_dat._h,
-                      start, 0, _fb_dat._w, _fb_dat._h,
-                      GL_COLOR_BUFFER_BIT, GL_NEAREST);
-
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
-    glViewport(0, 0, KLTexturePlayer::W(), KLTexturePlayer::H());
+//    glBindFramebuffer(GL_READ_FRAMEBUFFER, _fb_dat._fboID);
+//    glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+//
+//    float split = KLTexturePlayer::SplitLine();
+//    int start = split * _fb_dat._w +4;
+//    //int start = 0;
+//
+//    glBlitFramebuffer(start, 0, _fb_dat._w, _fb_dat._h,
+//                      start, 0, _fb_dat._w, _fb_dat._h,
+//                      GL_COLOR_BUFFER_BIT, GL_NEAREST);
+//
+//    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+//    glViewport(0, 0, KLTexturePlayer::W(), KLTexturePlayer::H());
 }

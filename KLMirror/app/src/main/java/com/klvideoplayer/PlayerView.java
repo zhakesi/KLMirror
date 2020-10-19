@@ -251,11 +251,21 @@ class PlayerView extends GLSurfaceView {
         return super.onTouchEvent(ev);
     }
 
-
+    private static long pre_renderTime = 0;
     private static class Renderer implements GLSurfaceView.Renderer {
         public void onDrawFrame(GL10 gl) {
             KLJniInterface.renderFrame();
             FPSView.CountOnce();
+            long cur_renderTime= System.nanoTime();
+            long dltTime = (cur_renderTime - pre_renderTime) / 1000 / 1000;
+            if ( dltTime < 16) {
+                try {
+                    Thread.sleep(16 - dltTime);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            pre_renderTime = System.nanoTime();
         }
 
         public void onSurfaceChanged(GL10 gl, int width, int height) {

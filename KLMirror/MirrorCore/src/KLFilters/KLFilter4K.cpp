@@ -164,14 +164,16 @@ void KLFilter4K::PushGrad(GLuint srcTex)
     glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
 
     float split = KLTexturePlayer::SplitLine();
-    //int end = split * _fb_dat3._w -2;
-    int end = _fb_dat3._w;
+    int end = split * _fb_dat3._w -4;
+    //int end = _fb_dat3._w;
 
-    glBlitFramebuffer(0, 0, end, _fb_dat3._h,
-                      0, 0, end, _fb_dat3._h,
+    glBlitFramebuffer(0, 0, _fb_dat3._w, _fb_dat3._h,
+                      0, 0, _fb_dat3._w, _fb_dat3._h,
                       GL_COLOR_BUFFER_BIT, GL_NEAREST);
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glViewport(0, 0, KLTexturePlayer::W(), KLTexturePlayer::H());
+
 }
 
 void KLFilter4K::Process(KLTexture* srcTex)

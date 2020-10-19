@@ -1,8 +1,8 @@
-#include "../../include/KLFilters/KLFilterFastGuassian.h"
+#include "../../include/KLFilters/KLFilterUSM.h"
 #include "../../include/KLShaderFactory.h"
 #include "../../include/GLUtil.h"
 
-KLFilterFastGuassian::KLFilterFastGuassian()
+KLFilterUSM::KLFilterUSM()
 {
     _texHalf = nullptr;
     _depth = 0;
@@ -10,12 +10,12 @@ KLFilterFastGuassian::KLFilterFastGuassian()
     _vbo = 0;
 }
 
-KLFilterFastGuassian::~KLFilterFastGuassian()
+KLFilterUSM::~KLFilterUSM()
 {
 
 }
 
-void KLFilterFastGuassian::Init(int w, int h)
+void KLFilterUSM::Init(int w, int h)
 {
     _texHalf = new KLTexture(w, h, KLE_TEX_RGBA);
 
@@ -26,7 +26,7 @@ void KLFilterFastGuassian::Init(int w, int h)
     GLUtil::CreatePanelVBO(_vbo);
 }
 
-void KLFilterFastGuassian::GenerateGuassianHoriz(KLTexture *srcTex)
+void KLFilterUSM::GenerateGuassianHoriz(KLTexture *srcTex)
 {
     int srcWidth = srcTex->w();
     int srcHeight = srcTex->h();
@@ -70,7 +70,7 @@ void KLFilterFastGuassian::GenerateGuassianHoriz(KLTexture *srcTex)
     glBindFramebuffer(GL_FRAMEBUFFER, pre_fbo);
 }
 
-void KLFilterFastGuassian::GuassianUSM(KLTexture * srcTex, KLTexture *blurTex)
+void KLFilterUSM::GuassianUSM(KLTexture * srcTex, KLTexture *blurTex)
 {
     GLuint blurID = blurTex->getTexID();
     GLuint srcID = srcTex->getTexID();
@@ -112,7 +112,7 @@ void KLFilterFastGuassian::GuassianUSM(KLTexture * srcTex, KLTexture *blurTex)
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
-void KLFilterFastGuassian::Process(KLTexture *srcTex)
+void KLFilterUSM::Process(KLTexture *srcTex)
 {
     int srcWidth = srcTex->w();
     int srcHeight = srcTex->h();

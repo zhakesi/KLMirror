@@ -12,7 +12,7 @@ public class EnterActivity extends Activity {
     @Override protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
-        intConfigure(VIDEO_MODE, "sample_input.mp4");
+        intConfigure(PICTURE_MODE, "dd.png");
         mView = new PlayerView(getApplication());
         setContentView(mView);
 

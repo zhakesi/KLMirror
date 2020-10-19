@@ -3,10 +3,10 @@
 #include "../KL3D.h"
 #include "../KLTexture.h"
 
-class KLFilterFastGuassian {
+class KLFilterUSM {
 public:
-    KLFilterFastGuassian();
-    ~KLFilterFastGuassian();
+    KLFilterUSM();
+    ~KLFilterUSM();
     void Process(KLTexture *srcTex);
 
 private:

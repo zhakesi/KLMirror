@@ -4,7 +4,8 @@
 #include "../../include/KLShaderFactory.h"
 #include "../../include/AndroidLog.h"
 #include "../../include/KLFilters/KLFilterNULL.h"
-#include "../../include/KLFilters/KLFilterFastGuassian.h"
+#include "../../include/KLFilters/KLColorMapFilter.h"
+#include "../../include/KLFilters/KLFilterUSM.h"
 #include "../../include/KLFilters/KLFilter4K.h"
 
 int KLTexturePlayer::_w = 0;
@@ -30,7 +31,6 @@ void KLTexturePlayer::onResize(int w, int h)
 
 void KLTexturePlayer::renderTexture()
 {
-    static unsigned long long pre_tick = 0;
     static GLuint texID;
     static KLImage *frame;
     if (_play_status == KL_PLAY_STATUS_PLAY) {
@@ -45,22 +45,13 @@ void KLTexturePlayer::renderTexture()
 
     KLTexturePlayer::updateSplit();
     if (_use_filter) {
-        static KLFilter4K *filter4K = new KLFilter4K;
+        static KLFilter4K *filter = new KLFilter4K;
         auto srcTex = KLMedia::GetResultTexture();
-        filter4K->Process(srcTex);
+        filter->Process(srcTex);
     } else {
         static KLFilterNULL *filterNull = new KLFilterNULL;
         filterNull->Process(texID);
     }
-
-
-    struct timeval time;
-    gettimeofday(&time, NULL);
-    unsigned long long cur_tick = (time.tv_sec*1000 + time.tv_usec/1000);
-    auto dlta = cur_tick - pre_tick;
-    if (dlta < 55)
-        usleep(1000 * (55 - dlta));
-    pre_tick = cur_tick;
 }
 
 void KLTexturePlayer::setPlayStatus(int status)

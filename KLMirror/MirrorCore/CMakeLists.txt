@@ -18,9 +18,9 @@ add_library(klmirror SHARED
         src/Graphic/KLTexture.cpp
         src/Graphic/KLTexturePlayer.cpp
         src/Graphic/GLUtil.cpp
-        src/Graphic/KLColorMapFilter.cpp
+        src/KLFilters//KLColorMapFilter.cpp
         src/KLFilters/KLFilterNULL.cpp
-        src/KLFilters/KLFilterFastGuassian.cpp
+        src/KLFilters/KLFilterUSM.cpp
         src/KLFilters/KLFilter4K.cpp)
 
 # add lib dependencies
