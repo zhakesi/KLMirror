@@ -1,5 +1,5 @@
 # KLMirror
-本项目为在安卓平台开发视频图像滤镜特效的实例程序。基于OpenGL ES实现，包括Anime4K, 3D Lut, Gussian Blur等。<br/>
+本项目可作为开发视频图像滤镜特效的示例项目。系统:Android, IDE: Android Studio, Graphic API:OpenGL ES3.0, 特效滤镜包括Anime4K, 3D Lut, Gussian Blur等。<br/>
 ## 3D Lut
 ![image](https://github.com/zhakesi/KLMirror/blob/master/Docs/3dlut.png)<br/>
 ## Gussian Blur
